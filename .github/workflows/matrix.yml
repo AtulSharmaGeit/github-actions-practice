@@ -1,4 +1,4 @@
-name: Matrix Build
+name: Matrix Build with Exclude
 
 on: push
 
@@ -6,9 +6,13 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.11", "3.12"]
+        exclude:
+          - os: windows-latest
+            python-version: "3.10"
     steps:
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -16,3 +20,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Print Python Version
         run: python --version
+      - name: Force failure (for testing)
+        if: ${{ matrix.python-version == '3.11' && matrix.os == 'ubuntu-latest'}}
+        run: exit 1
+          
