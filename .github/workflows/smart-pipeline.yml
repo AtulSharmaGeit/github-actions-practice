@@ -22,11 +22,11 @@ jobs:
     needs: [lint, test]
     steps:
       - name: Print Summary
-        run:
-          if [ "${{ github.ref  }}" == "refs/heads/main" ]; then 
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then 
             echo "Main branch push"
           else
             echo "Feature branch push"
           fi
-          echo "Commit meassage: ${{ github.event.commits[0].message }}"
+          echo "Commit message: ${{ github.event.commits[0].message }}"
             
