@@ -4,7 +4,7 @@ import sys
 
 def fetch_api_data():
     try:
-        response = requests.get("https://jsonplaceholder.typicode.com/users")
+        response = requests.get("https://invalid-url.typicode.com/users")
         response.raise_for_status()
     except Exception as e:
         print("API request failed: ",e)
