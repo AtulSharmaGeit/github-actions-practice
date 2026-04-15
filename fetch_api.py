@@ -1,5 +1,6 @@
 import requests #Loads the Requests library to make HTTP calls (GET/POST).
 import json #Provides tools to convert Python data to/from JSON.
+import sys
 
 def fetch_api_data():
     try:
