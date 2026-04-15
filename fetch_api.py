@@ -1,20 +1,19 @@
 import requests #Loads the Requests library to make HTTP calls (GET/POST).
 import json #Provides tools to convert Python data to/from JSON.
-import sys
 
 def fetch_api_data():
     try:
-        response = requests.get("https://invalid-url.typicode.com/users")
+        response = requests.get("https://jsonplaceholder.typicode.com/users")
         response.raise_for_status()
     except Exception as e:
         print("API request failed: ",e)
-        sys.exit(1)
+        return
     
     try:
         users = response.json()
     except Exception as e:
         print("Error reading JSON: ",e)
-        sys.exit(1)
+        return
 
     processed_data = []
     for user in users[:5]:
@@ -36,6 +35,5 @@ def fetch_api_data():
         print("\nData saved to output.json")
     except Exception as e:
         print("Error saving file: ",e)
-        sys.exit(1)
 
 fetch_api_data()
