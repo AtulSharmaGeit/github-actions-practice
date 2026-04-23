@@ -42,7 +42,7 @@ jobs:
           fi
 
       - name: Generated build version
-        if: version
+        id: version
         run: |
           SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
           echo "build_version=v1.0-${SHORT_SHA}" >> $GITHUB_OUTPUT
