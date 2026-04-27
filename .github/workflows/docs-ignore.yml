@@ -1,0 +1,16 @@
+name: Docs Ignore
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+    path-ignore:
+      - '*.md'
+      - 'docs/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "Triggered by code changes, not docs"'
